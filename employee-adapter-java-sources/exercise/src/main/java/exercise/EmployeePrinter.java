@@ -1,15 +1,13 @@
 package exercise;
 
-import java.util.Collection;
+import java.util.List;
 
-public final class EmployeePrinter {
-  private EmployeePrinter() {}
-  public static void print(Collection<Employee> employees) {
-    for (Employee e : employees) {
-      System.out.println("ID=" + e.getId()
-        + ", First=" + e.getFirstName()
-        + ", Last=" + e.getLastName()
-        + ", Email=" + e.getEmail());
+public class EmployeePrinter {
+    public static void print(List<Employee> employees) {
+        employees.forEach(emp -> System.out.println(
+            String.format("[%s] %s %s <%s>",
+                emp.getId(), emp.getFirstName(), emp.getLastName(), emp.getEmail()
+            )
+        ));
     }
-  }
 }
