@@ -1,33 +1,32 @@
 package com.example.notifications;
 
 /**
- * Starter demo that uses only the existing Email notifier.
- * TODOs guide you to add decorators and compose them.
+ * Starter demo that uses Email notifier and decorators.
  */
 public class Demo {
     public static void main(String[] args) {
         Notifier base = new EmailNotifier("user@example.com");
 
-        // Baseline behavior (already works)
+        // Baseline
         base.notify("Baseline email only.");
 
-        // === YOUR TASKS ===
-        // 1) Create a base decorator class: NotifierDecorator implements Notifier and wraps another Notifier.
-        // 2) Create concrete decorators:
-        //      - SmsDecorator (adds SMS send)
-        //      - WhatsAppDecorator (adds WhatsApp send)
-        //      - SlackDecorator (adds Slack send)
-        // 3) Compose at runtime to achieve these combinations:
-        //      a) Email + SMS
-        //      b) Email + WhatsApp
-        //      c) Email + Slack
-        //      d) Email + WhatsApp + Slack
-        //
-        // Example (after you implement):
-        // Notifier smsAndEmail = new SmsDecorator(base, "+91-99999-11111");
-        // smsAndEmail.notify("Build green ✅");
-        //
-        // Notifier full = new SlackDecorator(new WhatsAppDecorator(base, "user_wa"), "deployments");
-        // full.notify("Deployment completed 🚀");
+        // a) Email + SMS
+        Notifier emailSms = new SmsDecorator(base, "+91-99999-11111");
+        emailSms.notify("Build green ✅");
+
+        // b) Email + WhatsApp
+        Notifier emailWhatsApp = new WhatsAppDecorator(base, "user_wa");
+        emailWhatsApp.notify("Meeting at 5 PM");
+
+        // c) Email + Slack
+        Notifier emailSlack = new SlackDecorator(base, "general");
+        emailSlack.notify("Server restarted");
+
+        // d) Email + WhatsApp + Slack
+        Notifier emailWhatsAppSlack = new SlackDecorator(
+                new WhatsAppDecorator(base, "user_wa"),
+                "deployments"
+        );
+        emailWhatsAppSlack.notify("Deployment completed 🚀");
     }
 }
