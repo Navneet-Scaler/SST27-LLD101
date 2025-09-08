@@ -1,14 +1,14 @@
 package beverages_decorator;
 
-public class Cappuccino extends Beverage {
+public class Coffee extends Beverage {
 
     @Override
     public String getDescription() {
-        return "Cappuccino";
+        return "Coffee";
     }
 
     @Override
     public int cost() {
-        return 10;
+        return 12;
     }
 }
