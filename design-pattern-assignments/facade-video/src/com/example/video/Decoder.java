@@ -4,6 +4,7 @@ import java.nio.file.Path;
 
 public class Decoder {
     public Frame[] decode(Path src) {
-        return new Frame[] { new Frame(1920,1080), new Frame(1920,1080) };
+        System.out.println("Decoding video from " + src);
+        return new Frame[] { new Frame(1920, 1080), new Frame(1920, 1080) };
     }
 }

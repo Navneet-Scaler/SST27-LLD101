@@ -11,7 +11,7 @@ public class App {
             new Encoder()
         );
 
-        Path out = pipeline.process(Path.of("in.mp4"), Path.of("out.mp4"));
+        Path out = pipeline.process(Path.of("in.mp4"));
         System.out.println("Wrote " + out);
     }
 }
